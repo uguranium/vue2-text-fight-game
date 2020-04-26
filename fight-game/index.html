@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="css/bulma.min.css">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+        <div id="app" class="container">
+            <section class="columns">
+                <div class="column">
+                    <h1 class="has-text-centered title">YOU</h1>
+                    <div class="healthbar">
+                        <div class="healthbar has-text-centered">
+                            <div 
+                            class="health"  
+                            :style="{width: playerHealth + '%'}">
+                                 {{playerHealth}}
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h1 class="has-text-centered title">MONSTER</h1>
+                    <div class="healthbar">
+                        <div class="healthbar has-text-centered">
+                            <div 
+                            class="health" 
+                            :style="{width: monsterHealth + '%'}">
+                                {{monsterHealth}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="box is-primary has-text-centered" v-if="!gameIsRunning">
+                <button class="button is-primary" @click="startGame">Start New Game</button>
+            </div>
+            <div class="box has-text-centered" v-else>
+                <button class="button is-danger" @click="attack">Attack</button>
+                <button class="button is-warning" @click="specialAttack">Special Attack</button>
+                <button class="button is-success" @click="heal">Heal</button>
+                <button class="button is-light" @click="giveUp">Give Up</button>
+            </div>
+            <div class="box has-text-centered">
+                <ul>
+                    <li v-for="turn in turns">
+                        {{ turn }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
